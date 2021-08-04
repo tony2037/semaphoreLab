@@ -1,7 +1,8 @@
 #include "common.h"
 
 int main() {
-	int count = 10;
+	setbuf(stdout, NULL);
+	int count = 100;
 	int i = 0;
 	int iRet = -1;
 	const int timeout = 10;
@@ -11,13 +12,12 @@ int main() {
 		if (0 > iRet) {
 			goto LOOP_END;
 		}
-		printf("=== proc A acquire the lock ===\n");
-		sleep(1);
+		printf("=== proc A acquire the lock (%d) ===\n", i);
 		printf("proc A is doing something\n");
 		printf("proc A: %d\n", i);
 
 		UnLockByFile(LOCKFILE);
-		printf("=== proc A release the lock ===\n\n");
+		printf("=== proc A release the lock (%d) ===\n\n", i);
 		i++;
 LOOP_END:
 		continue;

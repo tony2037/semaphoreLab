@@ -3,12 +3,16 @@
 #include "common.h"
 
 int main() {
-	int count = 10;
+	setbuf(stdout, NULL);
+	int count = 100;
 	int i = 0;
 	int iRet = -1;
 	int iStat = -1;
 	const int timeout = 30;
 	struct stat sb;
+	FILE *fp = NULL;
+	long fileSize = 0;
+	char *buffer = NULL;
 
 	for (; i < count;) {
 		printf("=== proc C check cache file ===\n");
@@ -21,6 +25,13 @@ int main() {
 		}
 		else {
 			printf("proc C: %s exist, remove the cache and release the lock\n", CACHEFILE);
+			fp = fopen(CACHEFILE, "r");
+			fseek (fp , 0 , SEEK_END);
+			fileSize = ftell(fp);
+			rewind(fp);
+			buffer = (char*) malloc (sizeof(char) * fileSize);
+			fread(buffer, 1, fileSize, fp);
+			printf("proc C: cache file %s\n", buffer);
 			iRet = remove(CACHEFILE);
 			if (0 == iRet) {
 				printf("proc C: %s remove\n", CACHEFILE);
@@ -31,10 +42,16 @@ int main() {
 
 		printf("=== proc C loop end ===\n\n");
 LOOP_END:
-		i++;
-		sleep(1);
+		if (NULL != buffer) {
+			free(buffer);
+			buffer = NULL;
+		}
+		if (NULL != fp) {
+			fclose(fp);
+			fp = NULL;
+		}
 		BZERO_STRUCT(sb);
-		continue;
+		i++;
 	}
 
 	printf("=== proc C exit ===\n\n");

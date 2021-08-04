@@ -1,4 +1,4 @@
 #./procA >> log &
-./procA &
 ./procB &
+./procA &
 ./procC &

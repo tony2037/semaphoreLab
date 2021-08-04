@@ -1,203 +1,1677 @@
-=== proc A acquire the lock ===
-proc A is doing something
-proc A: 0
-=== proc A release the lock ===
+=== proc C check cache file ===
+proc C is doing something
+=== proc B acquire the lock (0) ===
+proc C: 0
+proc B is doing something
+proc B: 0
+proc B: /tmp/procB.cache does not exist
+proc C: /tmp/procB.cache does not exist
+=== proc A acquire the lock (0) ===
+=== proc C check cache file ===proc A is doing something
+=== proc B loop end (0) ===
 
-=== proc A acquire the lock ===
-proc A is doing something
+
+proc C is doing somethingproc A: 0
+
+proc C: 1
+proc C: /tmp/procB.cache exist, remove the cache and release the lock
+=== proc A release the lock (0) ===
+
+=== proc B acquire the lock (1) ===
+proc B is doing something
+proc B: 1
+=== proc A acquire the lock (1) ===
+proc A is doing somethingproc B: /tmp/procB.cache exist, this is fucking wrong
+
+=== proc B loop end (1) ===
+
 proc A: 1
-=== proc A release the lock ===
+=== proc B acquire the lock (2) ===
+=== proc A release the lock (1) ===
 
-=== proc A acquire the lock ===
-proc A is doing something
+proc B is doing something
+proc B: 2
+=== proc A acquire the lock (2) ===
+proc B: /tmp/procB.cache exist, this is fucking wrong
+proc A is doing something=== proc B loop end (2) ===
+
+
 proc A: 2
-=== proc A release the lock ===
+=== proc B acquire the lock (3) ===
+proc B is doing somethingproc C: cache file 0
+=== proc A release the lock (2) ===
 
-=== proc A acquire the lock ===
-proc A is doing something
+
+proc B: 3
+proc B: /tmp/procB.cache exist, this is fucking wrong
+=== proc A acquire the lock (3) ===
+=== proc B loop end (3) ===
+
+proc A is doing somethingproc C: /tmp/procB.cache remove
+
+=== proc B acquire the lock (4) ===
 proc A: 3
-=== proc A release the lock ===
+proc B is doing something
+proc B: 4
+=== proc C loop end ===
+=== proc A release the lock (3) ===
 
-=== proc A acquire the lock ===
+
+proc B: /tmp/procB.cache does not exist
+=== proc A acquire the lock (4) ===
 proc A is doing something
 proc A: 4
-=== proc A release the lock ===
+=== proc B loop end (4) ===
 
-=== proc A acquire the lock ===
-proc A is doing something
+=== proc A release the lock (4) ===
+
+=== proc C check cache file ===
+proc C is doing something=== proc A acquire the lock (5) ===
+
+=== proc B acquire the lock (5) ===
+proc A is doing somethingproc C: 2
+proc B is doing something
+
+proc C: /tmp/procB.cache exist, remove the cache and release the lock
 proc A: 5
-=== proc A release the lock ===
+proc B: 5
+proc B: /tmp/procB.cache exist, this is fucking wrong
+=== proc A release the lock (5) ===
 
-=== proc A acquire the lock ===
-proc A is doing something
+proc C: cache file 4
+=== proc B loop end (5) ===
+
+=== proc A acquire the lock (6) ===
+proc A is doing somethingproc C: /tmp/procB.cache remove
+
+=== proc B acquire the lock (6) ===
 proc A: 6
-=== proc A release the lock ===
+proc B is doing something
+=== proc C loop end ===
+proc B: 6
 
-=== proc A acquire the lock ===
-proc A is doing something
+=== proc A release the lock (6) ===
+
+proc B: /tmp/procB.cache does not exist
+=== proc C check cache file ====== proc A acquire the lock (7) ===
+
+proc A is doing somethingproc C is doing something
+=== proc B loop end (6) ===
+
+
 proc A: 7
-=== proc A release the lock ===
+proc C: 3
+proc C: /tmp/procB.cache exist, remove the cache and release the lock
+=== proc A release the lock (7) ===
 
-=== proc A acquire the lock ===
+=== proc B acquire the lock (7) ===
+proc C: cache file 6
+=== proc A acquire the lock (8) ===
+proc B is doing somethingproc C: /tmp/procB.cache remove
 proc A is doing something
+
+=== proc C loop end ===
+
+proc B: 7
 proc A: 8
-=== proc A release the lock ===
+=== proc C check cache file ===proc B: /tmp/procB.cache does not exist
 
-=== proc A acquire the lock ===
+=== proc A release the lock (8) ===
+
+proc C is doing something
+proc C: 4
+proc C: /tmp/procB.cache does not exist
+=== proc A acquire the lock (9) ===
+=== proc C check cache file ====== proc B loop end (7) ===
+
 proc A is doing something
-proc A: 9
-=== proc A release the lock ===
 
-=== proc A exit ===
-=== proc C check cache file ===
-proc C is doing something
-proc C: 0
-proc C: /tmp/procB.cache does not exist
-=== proc C check cache file ===
-proc C is doing something
-proc C: 0
-proc C: /tmp/procB.cache does not exist
-=== proc C check cache file ===
-proc C is doing something
-proc C: 0
-proc C: /tmp/procB.cache does not exist
-=== proc C check cache file ===
-proc C is doing something
-proc C: 0
-proc C: /tmp/procB.cache exist, remove the cache and release the lock
-proc C: /tmp/procB.cache remove
-=== proc C loop end ===
+proc C is doing somethingproc A: 9
 
-=== proc C check cache file ===
-proc C is doing something
-proc C: 1
-proc C: /tmp/procB.cache does not exist
-=== proc C check cache file ===
-proc C is doing something
-proc C: 1
-proc C: /tmp/procB.cache does not exist
-=== proc C check cache file ===
-proc C is doing something
-proc C: 1
-proc C: /tmp/procB.cache exist, remove the cache and release the lock
-proc C: /tmp/procB.cache remove
-=== proc C loop end ===
-
-=== proc C check cache file ===
-proc C is doing something
-proc C: 2
-proc C: /tmp/procB.cache does not exist
-=== proc C check cache file ===
-proc C is doing something
-proc C: 2
-proc C: /tmp/procB.cache does not exist
-=== proc C check cache file ===
-proc C is doing something
-proc C: 2
-proc C: /tmp/procB.cache exist, remove the cache and release the lock
-proc C: /tmp/procB.cache remove
-=== proc C loop end ===
-
-=== proc C check cache file ===
-proc C is doing something
-proc C: 3
-proc C: /tmp/procB.cache does not exist
-=== proc C check cache file ===
-proc C is doing something
-proc C: 3
-proc C: /tmp/procB.cache exist, remove the cache and release the lock
-proc C: /tmp/procB.cache remove
-=== proc C loop end ===
-
-=== proc C check cache file ===
-proc C is doing something
-proc C: 4
-proc C: /tmp/procB.cache does not exist
-=== proc C check cache file ===
-proc C is doing something
-proc C: 4
-proc C: /tmp/procB.cache does not exist
-=== proc C check cache file ===
-proc C is doing something
-proc C: 4
-proc C: /tmp/procB.cache exist, remove the cache and release the lock
-proc C: /tmp/procB.cache remove
-=== proc C loop end ===
-
-=== proc C check cache file ===
-proc C is doing something
 proc C: 5
-proc C: /tmp/procB.cache does not exist
-=== proc C check cache file ===
-proc C is doing something
-proc C: 5
-proc C: /tmp/procB.cache does not exist
-=== proc C check cache file ===
-proc C is doing something
-proc C: 5
+=== proc B acquire the lock (8) ===
 proc C: /tmp/procB.cache exist, remove the cache and release the lock
-proc C: /tmp/procB.cache remove
+=== proc A release the lock (9) ===
+
+proc B is doing something
+proc C: cache file 7
+proc B: 8
+=== proc A acquire the lock (10) ===
+proc B: /tmp/procB.cache exist, this is fucking wrong
+proc A is doing somethingproc C: /tmp/procB.cache remove
+=== proc B loop end (8) ===
+
+
+proc A: 10
 === proc C loop end ===
 
-=== proc C check cache file ===
+=== proc A release the lock (10) ===
+
+=== proc B acquire the lock (9) ===
+proc B is doing something=== proc A acquire the lock (11) ===
+
+proc A is doing something=== proc C check cache file ===proc B: 9
+
+
+proc A: 11
+proc B: /tmp/procB.cache does not exist
 proc C is doing something
+=== proc A release the lock (11) ===
+
 proc C: 6
-proc C: /tmp/procB.cache does not exist
-=== proc C check cache file ===
-proc C is doing something
-proc C: 6
-proc C: /tmp/procB.cache does not exist
-=== proc C check cache file ===
-proc C is doing something
-proc C: 6
+=== proc B loop end (9) ===
+
 proc C: /tmp/procB.cache exist, remove the cache and release the lock
+=== proc A acquire the lock (12) ===
+proc A is doing something
+proc A: 12
+proc C: cache file 9
+=== proc B acquire the lock (10) ===
+=== proc A release the lock (12) ===
+
+proc B is doing something
 proc C: /tmp/procB.cache remove
+proc B: 10
+proc B: /tmp/procB.cache does not exist
+=== proc A acquire the lock (13) ===
+proc A is doing something
+proc A: 13
+=== proc B loop end (10) ===
+
+=== proc A release the lock (13) ===
+
 === proc C loop end ===
 
-=== proc C check cache file ===
-proc C is doing something
+=== proc A acquire the lock (14) ===
+proc A is doing something
+=== proc B acquire the lock (11) ===
+proc A: 14
+proc B is doing something=== proc C check cache file ===
+
+=== proc A release the lock (14) ===
+
+proc B: 11
+proc C is doing somethingproc B: /tmp/procB.cache exist, this is fucking wrong
+
+=== proc A acquire the lock (15) ===
+=== proc B loop end (11) ===
+
 proc C: 7
-proc C: /tmp/procB.cache does not exist
-=== proc C check cache file ===
-proc C is doing something
-proc C: 7
-proc C: /tmp/procB.cache does not exist
-=== proc C check cache file ===
-proc C is doing something
-proc C: 7
-proc C: /tmp/procB.cache exist, remove the cache and release the lock
+proc A is doing somethingproc C: /tmp/procB.cache exist, remove the cache and release the lock
+=== proc B acquire the lock (12) ===
+
+proc B is doing somethingproc A: 15
+
+proc C: cache file 10
+proc B: 12
+=== proc A release the lock (15) ===
+
+proc B: /tmp/procB.cache exist, this is fucking wrong
 proc C: /tmp/procB.cache remove
+=== proc B loop end (12) ===
+
+=== proc A acquire the lock (16) ===
+proc A is doing something
+=== proc C loop end ===
+=== proc B acquire the lock (13) ===
+proc A: 16
+
+proc B is doing something
+=== proc A release the lock (16) ===
+
+proc B: 13
+=== proc C check cache file ===
+proc B: /tmp/procB.cache does not exist
+=== proc A acquire the lock (17) ===
+proc C is doing somethingproc A is doing something
+
+proc C: 8
+=== proc B loop end (13) ===
+
+proc A: 17
+proc C: /tmp/procB.cache exist, remove the cache and release the lock
+=== proc A release the lock (17) ===
+
+proc C: cache file 13
+=== proc B acquire the lock (14) ===
+proc B is doing something=== proc A acquire the lock (18) ===
+
+proc C: /tmp/procB.cache remove
+proc A is doing somethingproc B: 14
+
+=== proc C loop end ===
+proc A: 18
+proc B: /tmp/procB.cache does not exist
+
+=== proc A release the lock (18) ===
+
+=== proc C check cache file ====== proc B loop end (14) ===
+
+=== proc A acquire the lock (19) ===
+
+proc A is doing somethingproc C is doing something
+
+proc A: 19
+proc C: 9
+=== proc B acquire the lock (15) ===
+proc C: /tmp/procB.cache exist, remove the cache and release the lock
+=== proc A release the lock (19) ===
+
+proc B is doing something
+proc B: 15
+proc C: cache file 14
+=== proc A acquire the lock (20) ===
+proc B: /tmp/procB.cache exist, this is fucking wrong
+proc A is doing something=== proc B loop end (15) ===
+
+proc C: /tmp/procB.cache remove
+
+proc A: 20
+=== proc B acquire the lock (16) ===
+=== proc C loop end ===
+proc B is doing something
+=== proc A release the lock (20) ===
+
+
+proc B: 16
+=== proc C check cache file ====== proc A acquire the lock (21) ===
+
+proc B: /tmp/procB.cache does not exist
+proc A is doing somethingproc C is doing something
+
+proc A: 21
+=== proc B loop end (16) ===
+
+proc C: 10
+=== proc A release the lock (21) ===
+
+proc C: /tmp/procB.cache exist, remove the cache and release the lock
+=== proc A acquire the lock (22) ===
+=== proc B acquire the lock (17) ===
+proc C: cache file 16
+proc A is doing somethingproc B is doing something
+
+proc C: /tmp/procB.cache remove
+proc A: 22
+proc B: 17
+=== proc C loop end ===
+=== proc A release the lock (22) ===
+
+proc B: /tmp/procB.cache does not exist
+
+=== proc A acquire the lock (23) ===
+proc A is doing something
+=== proc C check cache file ===proc A: 23
+=== proc B loop end (17) ===
+
+
+proc C is doing something=== proc A release the lock (23) ===
+
+
+proc C: 11
+proc C: /tmp/procB.cache exist, remove the cache and release the lock
+=== proc B acquire the lock (18) ===
+=== proc A acquire the lock (24) ===
+proc B is doing somethingproc C: cache file 17
+proc A is doing something
+
+proc B: 18
+proc C: /tmp/procB.cache remove
+proc A: 24
+proc B: /tmp/procB.cache does not exist
+=== proc C loop end ===
+=== proc A release the lock (24) ===
+
+
+=== proc B loop end (18) ===
+
+=== proc A acquire the lock (25) ===
+proc A is doing something=== proc C check cache file ===
+
+proc A: 25
+proc C is doing something=== proc B acquire the lock (19) ===
+
+=== proc A release the lock (25) ===
+
+proc B is doing somethingproc C: 12
+=== proc A acquire the lock (26) ===
+
+proc C: /tmp/procB.cache exist, remove the cache and release the lock
+proc A is doing somethingproc B: 19
+
+proc C: cache file 18
+proc B: /tmp/procB.cache exist, this is fucking wrong
+proc A: 26
+=== proc B loop end (19) ===
+
+proc C: /tmp/procB.cache remove
+=== proc A release the lock (26) ===
+
+=== proc C loop end ===
+=== proc B acquire the lock (20) ===
+
+proc B is doing something=== proc A acquire the lock (27) ===
+
+proc A is doing something=== proc C check cache file ===proc B: 20
+
+
+proc B: /tmp/procB.cache does not exist
+proc A: 27
+proc C is doing something
+proc C: 13
+=== proc B loop end (20) ===
+
+=== proc A release the lock (27) ===
+
+proc C: /tmp/procB.cache exist, remove the cache and release the lock
+=== proc A acquire the lock (28) ===
+proc A is doing something
+proc C: cache file 20
+=== proc B acquire the lock (21) ===
+proc A: 28
+proc B is doing something
+proc C: /tmp/procB.cache remove
+proc B: 21
+=== proc A release the lock (28) ===
+
+proc B: /tmp/procB.cache does not exist
+=== proc C loop end ===
+=== proc A acquire the lock (29) ===
+
+proc A is doing something
+=== proc B loop end (21) ===
+
+proc A: 29
+=== proc C check cache file ===
+proc C is doing something=== proc A release the lock (29) ===
+
+
+proc C: 14
+=== proc B acquire the lock (22) ===
+=== proc A acquire the lock (30) ===
+proc C: /tmp/procB.cache exist, remove the cache and release the lock
+proc B is doing somethingproc A is doing something
+
+proc B: 22
+proc C: cache file 21
+proc A: 30
+proc B: /tmp/procB.cache exist, this is fucking wrong
+=== proc B loop end (22) ===
+
+proc C: /tmp/procB.cache remove
+=== proc A release the lock (30) ===
+
+=== proc B acquire the lock (23) ===
+=== proc C loop end ===
+proc B is doing something=== proc A acquire the lock (31) ===
+
+
+proc A is doing somethingproc B: 23
+
+=== proc C check cache file ===proc A: 31
+proc B: /tmp/procB.cache does not exist
+
+proc C is doing something=== proc A release the lock (31) ===
+
+
+proc C: 15
+=== proc B loop end (23) ===
+
+=== proc A acquire the lock (32) ===
+proc C: /tmp/procB.cache exist, remove the cache and release the lock
+proc A is doing something
+proc A: 32
+proc C: cache file 23
+=== proc B acquire the lock (24) ===
+=== proc A release the lock (32) ===
+
+proc B is doing somethingproc C: /tmp/procB.cache remove
+
+=== proc A acquire the lock (33) ===
+proc B: 24
+proc A is doing something=== proc C loop end ===
+proc B: /tmp/procB.cache does not exist
+
+
+proc A: 33
+=== proc C check cache file ====== proc A release the lock (33) ===
+
+
+=== proc B loop end (24) ===
+
+proc C is doing something
+=== proc A acquire the lock (34) ===
+proc C: 16
+proc A is doing somethingproc C: /tmp/procB.cache exist, remove the cache and release the lock
+
+proc A: 34
+=== proc B acquire the lock (25) ===
+proc C: cache file 24
+proc B is doing something
+=== proc A release the lock (34) ===
+
+proc B: 25
+proc C: /tmp/procB.cache remove
+proc B: /tmp/procB.cache does not exist
+=== proc A acquire the lock (35) ===
+=== proc C loop end ===
+proc A is doing something
+
+=== proc B loop end (25) ===
+
+proc A: 35
+=== proc C check cache file ====== proc A release the lock (35) ===
+
+
+=== proc B acquire the lock (26) ===
+proc C is doing somethingproc B is doing something=== proc A acquire the lock (36) ===
+
+
+proc A is doing somethingproc C: 17
+proc B: 26
+
+proc C: /tmp/procB.cache exist, remove the cache and release the lock
+proc B: /tmp/procB.cache exist, this is fucking wrong
+proc A: 36
+=== proc B loop end (26) ===
+
+proc C: cache file 25
+=== proc A release the lock (36) ===
+
+=== proc B acquire the lock (27) ===
+proc C: /tmp/procB.cache remove
+=== proc A acquire the lock (37) ===
+proc B is doing somethingproc A is doing something
 === proc C loop end ===
 
-=== proc C check cache file ===
-proc C is doing something
-proc C: 8
-proc C: /tmp/procB.cache does not exist
-=== proc C check cache file ===
-proc C is doing something
-proc C: 8
-proc C: /tmp/procB.cache does not exist
-=== proc C check cache file ===
-proc C is doing something
-proc C: 8
+proc A: 37
+proc B: 27
+
+=== proc A release the lock (37) ===
+
+proc B: /tmp/procB.cache does not exist
+=== proc A acquire the lock (38) ===
+proc A is doing something=== proc C check cache file ===
+
+proc A: 38
+=== proc B loop end (27) ===
+
+proc C is doing something=== proc A release the lock (38) ===
+
+
+proc C: 18
+=== proc A acquire the lock (39) ===
 proc C: /tmp/procB.cache exist, remove the cache and release the lock
+=== proc B acquire the lock (28) ===
+proc A is doing somethingproc B is doing something
+
+proc C: cache file 27
+proc A: 39
+proc B: 28
+proc B: /tmp/procB.cache exist, this is fucking wrong
 proc C: /tmp/procB.cache remove
+=== proc B loop end (28) ===
+
 === proc C loop end ===
+=== proc B acquire the lock (29) ===
+
+proc B is doing something=== proc A release the lock (39) ===
+
+
+proc B: 29
+=== proc A acquire the lock (40) ===
+=== proc C check cache file ===proc B: /tmp/procB.cache does not exist
+proc A is doing something
+
+proc C is doing somethingproc A: 40
+=== proc B loop end (29) ===
+
+
+=== proc A release the lock (40) ===
+
+proc C: 19
+proc C: /tmp/procB.cache exist, remove the cache and release the lock
+=== proc A acquire the lock (41) ===
+=== proc B acquire the lock (30) ===
+proc A is doing somethingproc B is doing something
+
+proc C: cache file 29
+proc A: 41
+proc B: 30
+proc B: /tmp/procB.cache exist, this is fucking wrong
+=== proc B loop end (30) ===
+
+proc C: /tmp/procB.cache remove
+=== proc A release the lock (41) ===
+
+=== proc B acquire the lock (31) ===
+proc B is doing something
+=== proc A acquire the lock (42) ===
+proc B: 31
+=== proc C loop end ===
+proc A is doing somethingproc B: /tmp/procB.cache does not exist
+
+
+proc A: 42
+=== proc B loop end (31) ===
+
+=== proc A release the lock (42) ===
 
 === proc C check cache file ===
-proc C is doing something
-proc C: 9
-proc C: /tmp/procB.cache does not exist
-=== proc C check cache file ===
-proc C is doing something
-proc C: 9
-proc C: /tmp/procB.cache does not exist
-=== proc C check cache file ===
-proc C is doing something
-proc C: 9
-proc C: /tmp/procB.cache exist, remove the cache and release the lock
+=== proc A acquire the lock (43) ===
+proc C is doing somethingproc A is doing something
+
+=== proc B acquire the lock (32) ===
+proc C: 20
+proc A: 43
+proc B is doing somethingproc C: /tmp/procB.cache exist, remove the cache and release the lock
+
+=== proc A release the lock (43) ===
+
+proc B: 32
+proc B: /tmp/procB.cache exist, this is fucking wrong
+proc C: cache file 31
+=== proc B loop end (32) ===
+
+=== proc A acquire the lock (44) ===
+proc A is doing something
+proc A: 44
 proc C: /tmp/procB.cache remove
+=== proc B acquire the lock (33) ===
+proc B is doing something=== proc A release the lock (44) ===
+
+
+proc B: 33
+=== proc C loop end ===
+proc B: /tmp/procB.cache does not exist
+=== proc A acquire the lock (45) ===
+
+proc A is doing something
+proc A: 45
+=== proc B loop end (33) ===
+
+=== proc A release the lock (45) ===
+
+=== proc C check cache file ===
+=== proc A acquire the lock (46) ===
+proc C is doing something=== proc B acquire the lock (34) ===
+proc A is doing something
+proc B is doing something
+proc C: 21
+
+proc A: 46
+proc B: 34
+proc C: /tmp/procB.cache exist, remove the cache and release the lock
+proc B: /tmp/procB.cache exist, this is fucking wrong
+=== proc A release the lock (46) ===
+
+=== proc B loop end (34) ===
+
+proc C: cache file 33
+=== proc A acquire the lock (47) ===
+=== proc B acquire the lock (35) ===
+proc A is doing somethingproc B is doing something
+
+proc C: /tmp/procB.cache remove
+proc A: 47
+proc B: 35
+proc B: /tmp/procB.cache does not exist
+=== proc A release the lock (47) ===
+
 === proc C loop end ===
 
+=== proc A acquire the lock (48) ===
+=== proc B loop end (35) ===
+
+proc A is doing something
+proc A: 48
+=== proc C check cache file ===
+=== proc A release the lock (48) ===
+
+=== proc B acquire the lock (36) ===
+proc C is doing somethingproc B is doing something=== proc A acquire the lock (49) ===
+
+
+proc A is doing somethingproc C: 22
+proc B: 36
+
+proc C: /tmp/procB.cache exist, remove the cache and release the lock
+proc B: /tmp/procB.cache exist, this is fucking wrong
+proc A: 49
+=== proc B loop end (36) ===
+
+proc C: cache file 35
+=== proc A release the lock (49) ===
+
+=== proc B acquire the lock (37) ===
+proc B is doing something
+=== proc A acquire the lock (50) ===
+proc C: /tmp/procB.cache remove
+proc B: 37
+proc A is doing something
+proc B: /tmp/procB.cache does not exist
+proc A: 50
+=== proc C loop end ===
+
+=== proc A release the lock (50) ===
+
+=== proc B loop end (37) ===
+
+=== proc A acquire the lock (51) ===
+proc A is doing something=== proc C check cache file ===
+
+proc A: 51
+=== proc B acquire the lock (38) ===
+proc C is doing somethingproc B is doing something
+=== proc A release the lock (51) ===
+
+
+proc C: 23
+proc B: 38
+=== proc A acquire the lock (52) ===
+proc C: /tmp/procB.cache exist, remove the cache and release the lock
+proc B: /tmp/procB.cache exist, this is fucking wrong
+proc A is doing something=== proc B loop end (38) ===
+
+
+proc C: cache file 37
+proc A: 52
+=== proc B acquire the lock (39) ===
+proc B is doing something
+proc C: /tmp/procB.cache remove
+proc B: 39
+=== proc A release the lock (52) ===
+
+proc B: /tmp/procB.cache does not exist
+=== proc C loop end ===
+=== proc A acquire the lock (53) ===
+
+proc A is doing something=== proc B loop end (39) ===
+
+
+proc A: 53
+=== proc C check cache file ====== proc A release the lock (53) ===
+
+
+=== proc B acquire the lock (40) ===
+proc C is doing somethingproc B is doing something=== proc A acquire the lock (54) ===
+
+
+proc A is doing somethingproc C: 24
+proc B: 40
+
+proc B: /tmp/procB.cache exist, this is fucking wrong
+proc A: 54
+proc C: /tmp/procB.cache exist, remove the cache and release the lock
+=== proc B loop end (40) ===
+
+=== proc A release the lock (54) ===
+
+=== proc B acquire the lock (41) ===
+proc C: cache file 39
+proc B is doing something=== proc A acquire the lock (55) ===
+
+proc A is doing somethingproc B: 41
+proc C: /tmp/procB.cache remove
+
+proc B: /tmp/procB.cache does not exist
+proc A: 55
+=== proc C loop end ===
+=== proc A release the lock (55) ===
+
+
+=== proc B loop end (41) ===
+
+=== proc A acquire the lock (56) ===
+proc A is doing something
+proc A: 56
+=== proc C check cache file ====== proc B acquire the lock (42) ===
+
+proc B is doing something=== proc A release the lock (56) ===
+
+proc C is doing something
+
+proc B: 42
+=== proc A acquire the lock (57) ===
+proc C: 25
+proc B: /tmp/procB.cache exist, this is fucking wrong
+proc A is doing something=== proc B loop end (42) ===
+
+proc C: /tmp/procB.cache exist, remove the cache and release the lock
+
+proc A: 57
+=== proc B acquire the lock (43) ===
+proc B is doing something
+=== proc A release the lock (57) ===
+
+proc B: 43
+proc C: cache file 41
+proc B: /tmp/procB.cache exist, this is fucking wrong
+=== proc A acquire the lock (58) ===
+=== proc B loop end (43) ===
+
+proc A is doing somethingproc C: /tmp/procB.cache remove
+
+proc A: 58
+=== proc B acquire the lock (44) ===
+proc B is doing something
+=== proc C loop end ===
+=== proc A release the lock (58) ===
+
+proc B: 44
+
+proc B: /tmp/procB.cache does not exist
+=== proc A acquire the lock === proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+ is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 0
+proc C: /tmp/procB.cache does not exist
+ot exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 64
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 65
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 66
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 67
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 68
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 69
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 70
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 71
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 72
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 73
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 74
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 75
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 76
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 77
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 78
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 79
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 80
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 81
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 82
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 83
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 84
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 85
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 86
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 87
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 88
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 89
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 90
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 91
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 92
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 93
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 94
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 95
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 96
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 97
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 98
+proc C: /tmp/procB.cache does not exist
+=== proc C check cache file ===
+proc C is doing something
+proc C: 99
+proc C: /tmp/procB.cache does not exist
 === proc C exit ===
 
