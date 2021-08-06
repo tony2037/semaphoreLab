@@ -20,7 +20,7 @@ int main (int argc, char *argv[])
     }
 
 	// FIXME
-	wd = inotify_add_watch(fd, CACHE_FILE, IN_OPEN | IN_CLOSE);
+	wd = inotify_add_watch(fd, CACHE_FILE, IN_DELETE_SELF);
 	if (-1 == wd) {
 		fprintf(stderr, "Cannot watch '%s': %s\n", CACHE_FILE, strerror(errno));
         exit(EXIT_FAILURE);
@@ -30,7 +30,6 @@ int main (int argc, char *argv[])
 	fds[0].fd = fd;                 /* Inotify input */
 	fds[0].events = POLLIN;
     
-    sleep(1);
     printf("%s - get the semaphore\n", PROCESS_NAME);
     semid = init_semaphore(KEY_SEM_EXAMPLE, -1);
     if (semid == -1) {
@@ -56,7 +55,7 @@ int main (int argc, char *argv[])
 	}
 	if (fds[0].revents & POLLIN) {
 		/* Inotify events are available. */
-		printf("%s - signal the semaphore\n", PROCESS_NAME);
+		printf("The cache file has been removed : %s - signal the semaphore\n", PROCESS_NAME);
 		printf("%s - exit critical section\n", PROCESS_NAME);
 		SEM_V(semid);
 		

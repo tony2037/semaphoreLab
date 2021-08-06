@@ -8,9 +8,9 @@
 int main (int argc, char *argv[])
 {
     int semid;
-    
+
+	sleep(1);
     printf("%s - get the semaphore\n", PROCESS_NAME);
-    
     semid = init_semaphore(KEY_SEM_EXAMPLE, 1);
     if (semid == -1) {
         perror(PROCESS_NAME);
