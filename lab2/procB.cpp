@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include "common.h"
 
-int main() {
+void procB(void) {
 	setbuf(stdout, NULL);
 	int count = 100;
 	int i = 0;

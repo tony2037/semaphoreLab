@@ -51,14 +51,14 @@ static inline int GetSem(const char *szFile, int maxSem) {
 	}
 	keySem = ret;
 
-	if (0 <= (semid = semget(keySem, 1, 0666 | IPC_CREAT | IPC_EXCL))) {
+	if (0 <= (semid = semget(keySem, 1, IPC_CREAT | IPC_EXCL))) {
 		op.val = maxSem;
 		if (0 > semctl(semid, 0, SETVAL, op)) {
 			printf("semctl fail (%s) errno = %m", szFile);
 			goto Err;
 		}
 	} else if (EEXIST == errno) {
-		semid = semget(keySem, 1, 0666);
+		semid = semget(keySem, 1, 0);
 
 		if (0 > semid) {
 			printf("semget fail (%s) errno = %m", szFile);

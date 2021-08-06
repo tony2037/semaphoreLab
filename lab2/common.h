@@ -23,3 +23,7 @@ static inline int GetSem(const char *, int);
 int LockByFile(const char *, int);
 
 void UnLockByFile(const char *);
+
+void procA(void);
+void procB(void);
+void procC(void);

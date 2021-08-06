@@ -2,7 +2,7 @@
 #include <sys/stat.h>
 #include "common.h"
 
-int main() {
+void procC(void) {
 	setbuf(stdout, NULL);
 	int count = 100;
 	int i = 0;
@@ -24,17 +24,16 @@ int main() {
 			goto LOOP_END;
 		}
 		else {
-			printf("proc C: %s exist, remove the cache and release the lock\n", CACHEFILE);
 			fp = fopen(CACHEFILE, "r");
 			fseek (fp , 0 , SEEK_END);
 			fileSize = ftell(fp);
 			rewind(fp);
 			buffer = (char*) malloc (sizeof(char) * fileSize);
 			fread(buffer, 1, fileSize, fp);
-			printf("proc C: cache file %s\n", buffer);
+			printf("proc C: %s exist (%s), remove the cache and release the lock\n", CACHEFILE, buffer);
 			iRet = remove(CACHEFILE);
 			if (0 == iRet) {
-				printf("proc C: %s remove\n", CACHEFILE);
+				printf("proc C: %s remove (%s)\n", CACHEFILE, buffer);
 				UnLockByFile(LOCKFILE);
 			}
 		}

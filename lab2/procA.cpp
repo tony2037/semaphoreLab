@@ -1,6 +1,6 @@
 #include "common.h"
 
-int main() {
+void procA(void) {
 	setbuf(stdout, NULL);
 	int count = 100;
 	int i = 0;
@@ -16,8 +16,8 @@ int main() {
 		printf("proc A is doing something\n");
 		printf("proc A: %d\n", i);
 
-		UnLockByFile(LOCKFILE);
 		printf("=== proc A release the lock (%d) ===\n\n", i);
+		UnLockByFile(LOCKFILE);
 		i++;
 LOOP_END:
 		continue;
